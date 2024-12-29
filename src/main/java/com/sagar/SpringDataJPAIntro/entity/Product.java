@@ -27,7 +27,7 @@ public class Product {
             sequenceName = "product_sequence_name",
             allocationSize = 1
     )
-    private Long id;
+    private long id;
     @Column(name = "stock_keeping_unit", nullable = false, unique = true)
     private String stockKeepingUnit;
     @Column(nullable = false)
