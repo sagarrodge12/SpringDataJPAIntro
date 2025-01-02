@@ -5,6 +5,7 @@ import com.sagar.SpringDataJPAIntro.dto.ProductDTO;
 import com.sagar.SpringDataJPAIntro.entity.Product;
 import com.sagar.SpringDataJPAIntro.service.ProductServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -48,6 +49,16 @@ public class ProductControllers {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No product found for: "+id+" to update");
         }
         return ResponseEntity.ok(updatedProduct);
+    }
+
+    @GetMapping("getProductPage/{offset}/{pageSize}")
+    public Page<Product> findProductsWithPagination(@PathVariable int offset, @PathVariable int pageSize) {
+        return productService.findProductsWithPagination(offset, pageSize);
+    }
+
+    @GetMapping("/getAllProducts/{field}")
+    public List<Product> getProductSort(@PathVariable String field){
+        return productService.getProductsWithSorting(field);
     }
 
 

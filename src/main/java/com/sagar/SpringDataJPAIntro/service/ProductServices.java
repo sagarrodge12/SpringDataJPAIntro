@@ -4,6 +4,9 @@ import com.sagar.SpringDataJPAIntro.dto.ProductDTO;
 import com.sagar.SpringDataJPAIntro.entity.Product;
 import com.sagar.SpringDataJPAIntro.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -49,6 +52,14 @@ public class ProductServices {
         productRepository.deleteById(id);
         return "Record Deleted for: " + id;
 
+    }
+
+    public Page<Product> findProductsWithPagination(int offset,int pageSize){
+        return productRepository.findAll(PageRequest.of(offset, pageSize));
+    }
+
+    public List<Product> getProductsWithSorting(String field){
+        return productRepository.findAll(Sort.by(Sort.Direction.DESC,field));
     }
 
 }
