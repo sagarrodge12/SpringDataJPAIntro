@@ -66,4 +66,10 @@ public class ProductControllers {
         return productService.getProductWithSortingAndPagination(offset, pageSize, field);
     }
 
+    @DeleteMapping("/deleteProductById/{id}")
+    public String deleteProductById(@PathVariable long id){
+        productService.DeleteProductDetailsById(id);
+        return "Product is deleted from DB...";
+    }
+
 }

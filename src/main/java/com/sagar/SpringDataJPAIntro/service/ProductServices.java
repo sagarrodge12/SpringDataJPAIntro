@@ -48,10 +48,8 @@ public class ProductServices {
         return productRepository.save(existingProduct);
     }
 
-    public String DeleteProductDetailsById(long id) {
+    public void DeleteProductDetailsById(long id) {
         productRepository.deleteById(id);
-        return "Record Deleted for: " + id;
-
     }
 
     public Page<Product> findProductsWithPagination(int offset, int pageSize) {
