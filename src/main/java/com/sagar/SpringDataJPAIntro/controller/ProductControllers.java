@@ -61,6 +61,9 @@ public class ProductControllers {
         return productService.getProductsWithSorting(field);
     }
 
-
+    @GetMapping("/getAllProducts/{offset}/{pageSize}/{field}")
+    public Page<Product> getProductsWithSortAndPage(@PathVariable int offset, @PathVariable int pageSize, @PathVariable String field){
+        return productService.getProductWithSortingAndPagination(offset, pageSize, field);
+    }
 
 }

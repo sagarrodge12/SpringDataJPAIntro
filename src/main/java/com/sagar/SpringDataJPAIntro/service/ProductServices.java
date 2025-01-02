@@ -54,12 +54,17 @@ public class ProductServices {
 
     }
 
-    public Page<Product> findProductsWithPagination(int offset,int pageSize){
+    public Page<Product> findProductsWithPagination(int offset, int pageSize) {
         return productRepository.findAll(PageRequest.of(offset, pageSize));
     }
 
-    public List<Product> getProductsWithSorting(String field){
-        return productRepository.findAll(Sort.by(Sort.Direction.DESC,field));
+    public List<Product> getProductsWithSorting(String field) {
+        return productRepository.findAll(Sort.by(Sort.Direction.DESC, field));
+    }
+
+    public Page<Product> getProductWithSortingAndPagination(int offset, int pageSize, String field) {
+        return productRepository.findAll(PageRequest.of(offset, pageSize).withSort(Sort.Direction.DESC, field));
     }
 
 }
+
